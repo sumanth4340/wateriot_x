@@ -1,0 +1,44 @@
+
+#define BLYNK_TEMPLATE_ID "TMPLFkV-JWsI"
+#define BLYNK_DEVICE_NAME "water iot X"
+#define BLYNK_FIRMWARE_VERSION        "0.1.0"
+#define BLYNK_PRINT Serial
+#define APP_DEBUG
+#define USE_NODE_MCU_BOARD
+#include "BlynkEdgent.h"
+BLYNK_WRITE(V0)
+{
+  if ( param.asInt()== 1)
+  {
+    digitalWrite(D5,HIGH);
+  }
+  else
+  {
+    digitalWrite(D5,LOW);
+  }
+}
+
+BLYNK_CONNECTED()
+{
+  Blynk.syncVirtual(V0); 
+}
+int moisture;
+ 
+int data;
+ 
+void setup()
+{
+  Serial.begin(115200);
+  pinMode(D5,OUTPUT);
+  delay(100);
+  Serial.begin(9600);
+ 
+  pinMode(A0,INPUT);
+ 
+
+  BlynkEdgent.begin();
+}
+
+void loop() {
+  BlynkEdgent.run();
+}
