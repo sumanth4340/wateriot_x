@@ -7,7 +7,7 @@
 #include "BlynkEdgent.h"
 BLYNK_WRITE(V0)
 {
-  if ( param.asInt()== 1)
+if ( param.asInt()== 1)
   {
     digitalWrite(D5,HIGH);
   }
@@ -16,28 +16,21 @@ BLYNK_WRITE(V0)
     digitalWrite(D5,LOW);
   }
 }
-
 BLYNK_CONNECTED()
 {
   Blynk.syncVirtual(V0); 
 }
 int moisture;
- 
 int data;
- 
-void setup()
+ void setup()
 {
   Serial.begin(115200);
   pinMode(D5,OUTPUT);
   delay(100);
   Serial.begin(9600);
- 
   pinMode(A0,INPUT);
- 
-
   BlynkEdgent.begin();
 }
-
 void loop() {
   BlynkEdgent.run();
 }
